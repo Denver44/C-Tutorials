@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE *fptr;
+    char c;
+    char s[67];
+    int count = 1;
+    printf("Enter the file name\n");
+    scanf("%s", s);
+    fptr = fopen(s, "r");
+    if (fptr == NULL)
+    {
+        printf("We could find the file\n");
+        exit(1);
+    }
+    printf("Filename: %s", s);
+
+    printf("\nLine: %d\t", count);
+
+    while (c = getc(fptr) != EOF)
+    {
+        if (c == '\n')
+        {
+            count++;
+            printf("\nLine: %d\t", count);
+        }
+        else
+        {
+            printf("%c", c);
+        }
+    }
+    fclose(fptr);
+
+    return 0;
+}
